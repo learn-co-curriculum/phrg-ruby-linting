@@ -139,7 +139,7 @@ def bar(n)
 [Last command returned error 1]
 ```
 
-Great! We are down to 5.
+Great! We are down to 4.
 
 ---
 
