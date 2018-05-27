@@ -4,21 +4,23 @@
 
 ## Linters
 
-In techonology, a `linter` refers to a tool that analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs. The analysis performed by lint tools can also serve to inform developers of better coding conventions that may optimize performance (generate faster executing code) or improve security.
+In techonology, a `linter` refers to a tool that analyzes source code to flag programming errors, bugs, stylistic errors, and suspicious constructs. The analysis performed by lint tools can also serve to inform developers of better coding conventions that may improve security or optimize performance (generate faster executing code).
 
-Every programming language has its own linting libraries. Nitro is no exception. The library we use for linting Javascript is called [`ESLint`](https://eslint.org/). And the library we use for linting Ruby is called [`Rubocop`](https://rubocop.readthedocs.io/en/latest/).
+Every programming language has its own linting libraries. Nitro is no exception. The library we use for linting Ruby is called [`Rubocop`](https://rubocop.readthedocs.io/en/latest/). And the library we use for linting Javascript is called [`ESLint`](https://eslint.org/).
 
 ## Code Style
 
-Code style can be boiled down to anything that is a stylistic choice in the code that has little to no affect on its behavior. An infamous example of a stylistic code choice is using tabs versus spaces. Another Ruby specific example is using `map` vs. `collect`. These differences have no effect on our code's behavior but will cause slight inconsistency with how the code reads.
+Code style can be boiled down to anything that is a stylistic choice that has little to no affect on code's behavior. An infamous example of a stylistic code choice is using tabs versus spaces for indentation. Another Ruby specific example is using the `map` vs. the `collect` enumerator. These differences have no effect on our code's behavior, but will cause slight inconsistency with how the code reads.
 
-Isn’t it enough that our code works? Well, there are a couple of reasons to care about our code styles. The first is consistency. A large codebase with multiple team members strives to make that codebase look as if it was written by just one author. When a team agrees on a given style, it will help keep the code looking similar file to file. When everyone follows the same code conventions, this also helps keep source control changes to a minimum. For example, Terry may like using double quotes but Briana may prefer using single quotes. But changing quotes style in a pull request causes unneeded confusion when another developer reviews the changes on Github. Deciding on one way to use quotes is not really about preference, but about writing clean and consistent code.
+Isn’t it enough that our code works? Well, there are a couple of reasons to care about our code styles. The first is consistency. A large codebase with multiple team members strives to make that codebase look as if it was written by one author. Once a team agrees on a given style, it helps to keep the code looking similar in every file. This also helps keep source control changes to a minimum.
+
+For example, Terry may like to use double quotes but Briana may prefer to use single quotes. When Terry modifies updates quotes to his liking and pushes them to Github, it makes it harder for another developer to understand and review the more important changes in his pull request. Deciding on one way to use quotes is not really about preference, but about minimizing changes and superfluous code style discussions amongst the team. There are more important issues to discuss.
 
 ## Install Rubocop
 
 ![Rubocop Logo](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubo-logo-horizontal.png?raw=true "Rubocop Logo")
 
-The Nitro codebase adheres to most of the default configurations that come with using Rubocop. Start by installing this gem to your laptop:
+The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing this gem to your laptop with the following command:
 
 ```
 gem install rubocop
@@ -26,7 +28,7 @@ gem install rubocop
 
 ## Using Rubocop
 
-Like `rspec`, `rubocop` is a command line tool that runs some checks against your code. It can be invoked by simply typing `rubocop`, or passing it a path to select a smaller group of files: `rubocop lib/cats/`. Rubocop will lint all the ruby files contained in the directory you run it for. Let's use `rubocop` on this `example.rb` file.
+Like `rspec`, `rubocop` is a command line tool that runs some checks against your code. It can be invoked by simply typing `rubocop`, or passing it a path to select a smaller group of files. For example, `rubocop lib/cats/tabbies/`. Rubocop will lint all the ruby files contained in the directory you run it for. Let's use `rubocop` on the code below. This code is contained in a file named `example.rb`.
 
 ```ruby
 def foo
@@ -80,7 +82,7 @@ Let's break down this output one line at a time, starting at the very bottom:
 [Last command returned error 1]
 ```
 
-Since there were style offenses in `example.rb`, the `rubocop` shell command exit with an error 1. Should we have had no offenses, then would would not have seen this message.
+Since there were style offenses in `example.rb`, the `rubocop` shell command exit with an error 1. Should we have had no offenses, then you would not have seen this message.
 
 ---
 
@@ -98,13 +100,18 @@ example.rb:12:2: W: Layout/DefEndAlignment: end at 12, 1 is not aligned with def
  ^^^
 ```
 
-In the `example.rb` file, on line `12`, on character `2`, there is an offense.
+In the `example.rb` file, in line `12`, on character `2`, there is an offense.
 
 The offense is in called `Layout/DefEndAlignment` where `Layout` is the rubocop department, and `DefEndAlignment` is the name of the rule. Rubocop refers to its rules as "cops".
 
-The message for this offense reads `end at 12, 1 is not aligned with def at 10, 0.`. So what does this mean? This message points out that the position of the line of code with an `end` is not aligned with its corresponding `def`. It even goes as far as reporting the exact position of the `def`.
+The message for this offense reads `end at 12, 1 is not aligned with def at 10, 0.`. So what does this mean? This message points out that a method's `end` position is not aligned with its corresponding `def`. It even goes as far as reporting the exact position of both the `end` and the `def`.
 
-Below the message, `rubocop` using upticks to highlight the position of the offense in the line. In this case, its the entire `end`.
+Below the message, `rubocop` uses upticks to highlight the position of the offense in the line. In this case, its the entire `end`.
+
+```ruby
+ end
+ ^^^
+```
 
 To fix this, we must delete the extra whitespace in front of end, like this:
 
@@ -143,7 +150,7 @@ Great! We are down to 4.
 
 ---
 
-Besides the descriptive error messages, another nice thing about rubocop is that its "cops" are well documented. If you ever are confused about what the offense is describing, you can just drop the name of the cop and `rubocop` into Google, and the first hit will provide some additional documentation and good and bad examples. Here is the [doc page on Layout/DefEndAlignment](https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/DefEndAlignment).
+Besides the descriptive error messages, another nice element about using rubocop is that it is well documented. When you are confused about what the offense is describing, just drop the name of the cop and "rubocop" into Google, and the first hit will provide some additional explanation with good and bad examples. Here is the [doc page on Layout/DefEndAlignment](https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Layout/DefEndAlignment).
 
 ---
 
@@ -153,7 +160,7 @@ def bar(n)
         ^
 ```
 
-In the `example.rb` file, on line `6`, on character `9`, there is an offense.
+In the `example.rb` file, in line `6`, on character `9`, there is an offense.
 
 The offense is called `Naming/UncommunicativeMethodParamName` where `Naming` is the department, and `UncommunicativeMethodParamName` is the name of the cop.
 
@@ -204,7 +211,7 @@ def bar(num)
         ^^^
 ```
 
-In the `example.rb` file, on line `6`, on character `9`, there is an offense.
+In the `example.rb` file, in line `6`, on character `9`, there is an offense.
 
 The offense is called `Lint/UnusedMethodArgument` where `Lint` is the department, and `UnusedMethodArgument` is the name of the cop.
 
@@ -219,7 +226,7 @@ def bar(num)
 
 Wait, didn't we just fix this line?
 
-Well, no. It's possible for more than one offense to be on one line of code. And this message points out that we never actually use our argument in the bar method. We should definitely be using all the arguments that we define in a method. And oh yeah!, `num` should be getting added to 1. Like so:
+Well, no. It's possible for more than one offense to be on one line of code. And this message points out that we never actually use our argument in the bar method. We should definitely be using all the arguments that we define in a method. And oh yeah!, `num` and `1` should be getting added together. Like so:
 
 ```ruby
 def bar(num)
@@ -248,7 +255,7 @@ example.rb:3:1: C: Layout/IndentationWidth: Use 2 (not 0) spaces for indentation
 
 ---
 
-Break down the last two rubocop offenses piece by piece:
+Break down the last two rubocop offenses piece by piece like we have done above.
 
 ```
 example.rb:3:1: C: Layout/IndentationWidth: Use 2 (not 0) spaces for indentation.
@@ -286,23 +293,25 @@ Inspecting 1 file
 1 file inspected, no offenses detected
 ```
 
+:tada:
+
 ## Configuring Sublime
 
-Next let's configure Sublime to highlight rubocop offenses in our test editor. Navigate to `Preferences > Package Control`. Start typing "Install Packages" and select it from the dropdown. Then type "rubocop" and select the plugin. Finish by restarting Sublime.
+Next, let's configure Sublime to highlight rubocop offenses in our test editor. Navigate to `Preferences > Package Control`. Start typing "Install Packages" and select it from the dropdown. Then type "rubocop" and select the plugin. Finish by restarting Sublime.
 
 The original offending code example will now like this:
 
-`insert pic here`
+![Sublime Rubocop](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-sublime-highlighting.png?raw=true "Sublime Rubocop")
 
 Notice that your text editor highlights "offending" Ruby style offenses with red underlines, pipes, and squares. As we move forward, this will help steer us towards using consistent and clear syntax.
 
 ## Rubocop in Nitro
 
-Out of the box, `rubocop` enforces all of its default configurations. However, every cop in `rubocop` has the ability to either be turned off, or modified to enforce a different coding style. That is because, for the most part, the important take away from using a linter is that everyone adheres to one style.
+Out of the box, `rubocop` enforces all of its default configurations. However, every cop has the ability to either be turned off, on, or modified to enforce a different style. That is because, for the most part, the important take away from using a linter is that everyone adheres to one style.
 
-Nitro mostly uses all of `rubocop`'s default configurations. So understanding these defaults, what they mean, and how to fix your style offenses is more than enough to consider as you continue your studies as a Student Developer at Power.
+Nitro mostly uses `rubocop`'s default configurations. So understanding these defaults, what they mean, and how to fix your style offenses is enough to consider as you continue your studies as a `Student Developer` at Power Home Remodeling Group.
 
-## Linting in future Flatiron Labs
+## Linting in Flatiron Labs
 
 The Flatiron labs themselves do not adhere to consistent style practices. You will notice multiple offenses in code from here on out. There are many reasons for this. Here are a few:
 
