@@ -53,6 +53,12 @@ Style/Documentation:
 Style/ExponentialNotation:
   Enabled: false
 
+# This is enabled in Nitro, and important to enforce to prepare for Ruby 3.0.
+# But Ruby will not be raised to 3.0 during the duration of the PCA.
+# So disabling this rule dramatically reduces noise.
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/HashEachMethods:
   Enabled: false
 
