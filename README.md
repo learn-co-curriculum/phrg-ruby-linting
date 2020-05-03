@@ -338,6 +338,6 @@ curl "https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/.rubo
 
 ## Resources
 
-* [Rubocop Docs](https://rubocop.readthedocs.io/en/latest/)
+* [Rubocop Docs](https://docs.rubocop.org/en/latest/)
 
-* [Rubocop Repository](https://github.com/bbatsov/rubocop)
+* [Rubocop Repository](https://github.com/rubocop-hq/rubocop)
