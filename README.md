@@ -20,10 +20,14 @@ For example, Terry may like to use double quotes but Briana may prefer to use si
 
 ![Rubocop Logo](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubo-logo-horizontal.png?raw=true "Rubocop Logo")
 
-The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing this gem to your laptop with the following command:
+The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing these two `rubocop` gems to your laptop with the following commands:
 
 ```
 gem install rubocop
+```
+
+```
+gem install rubocop-performance
 ```
 
 ## Using Rubocop
@@ -295,15 +299,19 @@ Inspecting 1 file
 
 :tada:
 
-## Configuring Sublime
+## Configuring VSCode
 
-Next, let's configure Sublime to highlight rubocop offenses in our test editor. Navigate to `Preferences > Package Control`. Start typing "Install Packages" and select it from the dropdown. Then type "rubocop" and select the plugin. Finish by restarting Sublime.
+Next, let's configure VSCode to highjlight rubocop offenses in our text editor.
+
+Click on the "Extensions" left sidebar icon. Then type "rubocop" into the search bar and click "Install" for the `ruby-rubocop` extension.
+
+![VSCode Rubocop](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/VSCode-Rubocop-Extension.png?raw=true "VSCode Rubocop")
 
 The original offending code example will now like this:
 
-![Sublime Rubocop](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-sublime-highlighting.png?raw=true "Sublime Rubocop")
+![Rubocop Highlighting](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-vscode-highlighting.png?raw=true "Rubocop Highlighting")
 
-Notice that your text editor highlights "offending" Ruby style offenses with red underlines, pipes, and squares. As we move forward, this will help steer us towards using consistent and clear syntax.
+Notice that your text editor highlights "offending" Ruby style offenses with underlines. To learn about what offense has been detected, hover your mouse over an underlined fragment of code. As we move forward, this will help steer us towards using consistent and clear syntax.
 
 ## Rubocop in Nitro
 
@@ -320,8 +328,16 @@ The Flatiron labs themselves do not adhere to consistent style practices. You wi
 1. The curriculum was written in various versions of Ruby. Many "better" practices where not recognized until recently.
 1. The labs in the curriculum are small projects. Using consistent style is of the greatest benefit to projects that employ multiple developers. Using a linter becomes more important as the scope of a project grows.
 
+## Apply Nitro linting conventions
+
+Instead of just using `rubocop` defaults, it makes more sense for us to get used to Nitro's Ruby linting standards. We can accomplish this by copying a generic version of these configurations to our laptops. To do so, run this command:
+
+```bash
+curl "https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/.rubocop.yml" -o "$HOME/.rubocop.yml"
+```
+
 ## Resources
 
-* [Rubocop Docs](https://rubocop.readthedocs.io/en/latest/)
+* [Rubocop Docs](https://docs.rubocop.org/en/latest/)
 
-* [Rubocop Repository](https://github.com/bbatsov/rubocop)
+* [Rubocop Repository](https://github.com/rubocop-hq/rubocop)
