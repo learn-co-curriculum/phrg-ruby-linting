@@ -295,15 +295,19 @@ Inspecting 1 file
 
 :tada:
 
-## Configuring Sublime
+## Configuring VSCode
 
-Next, let's configure Sublime to highlight rubocop offenses in our test editor. Navigate to `Preferences > Package Control`. Start typing "Install Packages" and select it from the dropdown. Then type "rubocop" and select the plugin. Finish by restarting Sublime.
+Next, let's configure VSCode to highjlight rubocop offenses in our text editor.
+
+Click on the "Extensions" left sidebar icon. Then type "rubocop" into the search bar and click "Install" for the `ruby-rubocop` extension.
+
+![VSCode Rubocop](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/VSCode-Rubocop-Extension.png?raw=true "VSCode Rubocop")
 
 The original offending code example will now like this:
 
-![Sublime Rubocop](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-sublime-highlighting.png?raw=true "Sublime Rubocop")
+![Rubocop Highlighting](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-vscode-highlighting.png?raw=true "Rubocop Highlighting")
 
-Notice that your text editor highlights "offending" Ruby style offenses with red underlines, pipes, and squares. As we move forward, this will help steer us towards using consistent and clear syntax.
+Notice that your text editor highlights "offending" Ruby style offenses with underlines. To learn about what offense has been detected, hover your mouse over an underlined fragment of code. As we move forward, this will help steer us towards using consistent and clear syntax.
 
 ## Rubocop in Nitro
 
