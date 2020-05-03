@@ -20,10 +20,14 @@ For example, Terry may like to use double quotes but Briana may prefer to use si
 
 ![Rubocop Logo](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubo-logo-horizontal.png?raw=true "Rubocop Logo")
 
-The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing this gem to your laptop with the following command:
+The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing these two `rubocop` gems to your laptop with the following commands:
 
 ```
 gem install rubocop
+```
+
+```
+gem install rubocop-performance
 ```
 
 ## Using Rubocop
@@ -323,6 +327,14 @@ The Flatiron labs themselves do not adhere to consistent style practices. You wi
 1. The curriculum has been written over a number of years by different individuals that adhere to different practices and habits.
 1. The curriculum was written in various versions of Ruby. Many "better" practices where not recognized until recently.
 1. The labs in the curriculum are small projects. Using consistent style is of the greatest benefit to projects that employ multiple developers. Using a linter becomes more important as the scope of a project grows.
+
+## Apply Nitro linting conventions
+
+Instead of just using `rubocop` defaults, it makes more sense for us to get used to Nitro's Ruby linting standards. We can accomplish this by copying a generic version of these configurations to our laptops. To do so, run this command:
+
+```bash
+curl "https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/.rubocop.yml" -o "$HOME/.rubocop.yml"
+```
 
 ## Resources
 
