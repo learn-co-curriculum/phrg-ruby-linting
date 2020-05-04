@@ -14,13 +14,13 @@ Code style can be boiled down to anything that is a stylistic choice that has li
 
 Isn’t it enough that our code works? Well, there are a couple of reasons to care about our code styles. The first is consistency. A large codebase with multiple team members strives to make that codebase look as if it was written by one author. Once a team agrees on a given style, it helps to keep the code looking similar in every file. This also helps keep source control changes to a minimum.
 
-For example, Terry may like to use double quotes but Briana may prefer to use single quotes. When Terry modifies updates quotes to his liking and pushes them to Github, it makes it harder for another developer to understand and review the more important changes in his pull request. Deciding on one way to use quotes is not really about preference, but about minimizing changes and superfluous code style discussions amongst the team. There are more important issues to discuss.
+For example, Chris may like to use double quotes but Briana may prefer to use single quotes. When Chris's modifications update quotes to his liking and pushes them to Github, it makes it harder for another developer to understand and review the more important changes in his pull request. Deciding on one way to use quotes is not really about preference, but about minimizing changes and superfluous code style discussions amongst the team. There are more important issues to discuss.
 
 ## Install Rubocop
 
 ![Rubocop Logo](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubo-logo-horizontal.png?raw=true "Rubocop Logo")
 
-The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, installing these two `rubocop` gems to your laptop with the following commands:
+The Nitro codebase uses most of the default configurations that come with Rubocop. To get started, install these two `rubocop` gems to your laptop with the following commands:
 
 ```
 gem install rubocop
@@ -32,7 +32,7 @@ gem install rubocop-performance
 
 ## Using Rubocop
 
-Like `rspec`, `rubocop` is a command line tool that runs some checks against your code. It can be invoked by simply typing `rubocop`, or passing it a path to select a smaller group of files. For example, `rubocop lib/cats/tabbies/`. Rubocop will lint all the ruby files contained in the directory you run it for. Let's use `rubocop` on the code below. This code is contained in a file named `example.rb`.
+Like `rspec` and `learn`, `rubocop` is a command line tool that runs some checks against your code. It can be invoked by simply typing `rubocop`, or passing it a path to select a smaller group of files. For example, `rubocop lib/cats/tabbies/`. Rubocop will lint all the ruby files contained in the directory you pass it. Let's use `rubocop` on the code below. This code is contained in a file named `example.rb`.
 
 ```ruby
 def foo
@@ -66,7 +66,7 @@ example.rb:3:1: C: Layout/IndentationWidth: Use 2 (not 0) spaces for indentation
 example.rb:6:9: W: Lint/UnusedMethodArgument: Unused method argument - n. If it's necessary, use _ or _n as an argument name to indicate that it won't be used. You can also write as bar(*) if you want the method to accept any arguments but don't care about them.
 def bar(n)
         ^
-example.rb:6:9: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+example.rb:6:9: C: Naming/MethodParameterName: Method parameter must be at least 3 characters long.
 def bar(n)
         ^
 example.rb:12:2: W: Layout/DefEndAlignment: end at 12, 1 is not aligned with def at 10, 0.
@@ -141,7 +141,7 @@ example.rb:3:1: C: Layout/IndentationWidth: Use 2 (not 0) spaces for indentation
 example.rb:6:9: W: Lint/UnusedMethodArgument: Unused method argument - n. If it's necessary, use _ or _n as an argument name to indicate that it won't be used. You can also write as bar(*) if you want the method to accept any arguments but don't care about them.
 def bar(n)
         ^
-example.rb:6:9: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+example.rb:6:9: C: Naming/MethodParameterName: Method parameter must be at least 3 characters long.
 def bar(n)
         ^
 
@@ -159,14 +159,14 @@ Besides the descriptive error messages, another nice element about using rubocop
 ---
 
 ```
-example.rb:6:9: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+example.rb:6:9: C: Naming/MethodParameterName: Method parameter must be at least 3 characters long.
 def bar(n)
         ^
 ```
 
 In the `example.rb` file, in line `6`, on character `9`, there is an offense.
 
-The offense is called `Naming/UncommunicativeMethodParamName` where `Naming` is the department, and `UncommunicativeMethodParamName` is the name of the cop.
+The offense is called `Naming/MethodParameterName` where `Naming` is the department, and `MethodParamName` is the name of the cop.
 
 The message reads `Method parameter must be at least 3 characters long.`
 
@@ -301,7 +301,7 @@ Inspecting 1 file
 
 ## Configuring VSCode
 
-Next, let's configure VSCode to highjlight rubocop offenses in our text editor.
+Next, let's configure VSCode to highlight rubocop offenses in our text editor.
 
 Click on the "Extensions" left sidebar icon. Then type "rubocop" into the search bar and click "Install" for the `ruby-rubocop` extension.
 
@@ -311,13 +311,13 @@ The original offending code example will now like this:
 
 ![Rubocop Highlighting](https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/rubocop-vscode-highlighting.png?raw=true "Rubocop Highlighting")
 
-Notice that your text editor highlights "offending" Ruby style offenses with underlines. To learn about what offense has been detected, hover your mouse over an underlined fragment of code. As we move forward, this will help steer us towards using consistent and clear syntax.
+Notice that your text editor highlights offending Ruby style offenses with underlines. To learn about what offense has been detected, hover your mouse over an underlined fragment of code. As we move forward, this will help steer us towards using consistent and clear syntax.
 
 ## Rubocop in Nitro
 
 Out of the box, `rubocop` enforces all of its default configurations. However, every cop has the ability to either be turned off, on, or modified to enforce a different style. That is because, for the most part, the important take away from using a linter is that everyone adheres to one style.
 
-Nitro mostly uses `rubocop`'s default configurations. So understanding these defaults, what they mean, and how to fix your style offenses is enough to consider as you continue your studies as a `Student Developer` at Power Home Remodeling Group.
+Nitro mostly uses `rubocop`'s default configurations. Understanding these defaults, what they mean, and how to fix your style offenses will help as you continue your studies as a `Student Developer` at Power Home Remodeling Group.
 
 ## Linting in Flatiron Labs
 
@@ -330,7 +330,7 @@ The Flatiron labs themselves do not adhere to consistent style practices. You wi
 
 ## Apply Nitro linting conventions
 
-Instead of just using `rubocop` defaults, it makes more sense for us to get used to Nitro's Ruby linting standards. We can accomplish this by copying a generic version of these configurations to our laptops. To do so, run this command:
+Instead of just using `rubocop` defaults, it makes more sense for us to get used to Nitro's Ruby linting standards. We can accomplish this by copying a generic version of Nitro's configurations to our laptops. To do so, run this command:
 
 ```bash
 curl "https://raw.githubusercontent.com/powerhome/phrg-ruby-linting/master/.rubocop.yml" -o "$HOME/.rubocop.yml"
